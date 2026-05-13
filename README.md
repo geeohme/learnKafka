@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# Kafka Foundations — Interactive Learning App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, single-page learning experience for Apache Kafka built with React, TypeScript, and Vite. Designed to take developers from zero to production-ready Kafka knowledge through animated sections, interactive quizzes, and real-world code examples.
 
-Currently, two official plugins are available:
+## What It Covers
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app is structured as a guided course with the following chapters and deep-dive sections:
 
-## React Compiler
+| Chapter | Topic |
+|---|---|
+| 1 | Kafka Core Concepts — topics, partitions, brokers, offsets |
+| 2 | Producers & Consumers — configuration, consumer groups, rebalancing |
+| 3 | Kafka Connect — source/sink connectors, the Connect framework |
+| 4 | Kafka Streams — stream processing, KStreams, KTables |
+| 5 | Schema Registry & Avro — schema evolution, serialization contracts |
+| 6 | Monitoring & Observability — key metrics, consumer lag, alerting |
+| 7 | Deployment & Operations — partitioning strategy, retention, scaling |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Deep Dives:**
+- Exactly-Once Semantics (EOS) — idempotent producers, transactions
+- Serialization — Avro, Protobuf, JSON Schema trade-offs
+- Security — TLS, SASL, ACLs, encryption at rest
+- Operational Tuning — throughput vs. latency configuration
+- Failure Scenarios — broker failures, network partitions, consumer crashes
+- Code Examples — runnable producer/consumer patterns
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Personalized progress tracking (name prompt, chapter progress saved to localStorage)
+- GSAP-powered scroll animations with Lenis smooth scrolling
+- Interactive knowledge check quizzes with scoring
+- Syntax-highlighted code examples
+- Responsive design with a dark, high-contrast aesthetic
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **React 19** + **TypeScript**
+- **Vite** (build tool)
+- **React Router v7** (client-side routing)
+- **Tailwind CSS** + **shadcn/ui** (component library)
+- **GSAP** + **Lenis** (animations and smooth scroll)
+- **Recharts** (data visualizations)
+- Deployed on **Cloudflare Pages**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Local Development
+
+```bash
+cd app
+npm install
+npm run dev        # starts dev server at http://localhost:3000
+npm run build      # production build → dist/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Cloudflare Pages Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Setting | Value |
+|---|---|
+| Root directory | `app` |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Node.js version | 22+ |
